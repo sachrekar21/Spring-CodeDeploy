@@ -13,8 +13,92 @@ services:
      - config-server
     depends_on:
       - config-server
-    entrypoint: ["./wait-for-it.sh","config-server:8888","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","config-server:8888","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8761:8761
 
   
+  customers-service:
+    image: leoshreyas/petclinic:customers-service
+    container_name: customers-service
+    links:
+     - config-server
+     - discovery-server
+     - tracing-server
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+    - 8081:8081
+
+  visits-service:
+    image: leoshreyas/petclinic:visits-service
+    container_name: visits-service
+    links:
+     - config-server
+     - discovery-server
+     - tracing-server
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+     - 8082:8082
+
+  vets-service:
+    image: leoshreyas/petclinic:vets-service
+    container_name: vets-service
+    links:
+     - config-server
+     - discovery-server
+     - tracing-server
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+     - 8083:8083
+
+  api-gateway:
+    image:leoshreyas/petclinic:api-gateway
+    container_name: api-gateway
+    links:
+     - config-server
+     - discovery-server
+     - customers-service
+     - visits-service
+     - vets-service
+     - tracing-server
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+     - 8080:8080
+
+  tracing-server:
+    image: leoshreyas/petclinic:tracing-server
+    container_name: tracing-server
+    links:
+     - config-server
+     - discovery-server
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+     - 9411:9411
+
+  admin-server:
+    image: leoshreyas/petclinic:admin-server
+    container_name: admin-server
+    links:
+     - config-server
+     - discovery-server
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+     - 9090:9090
