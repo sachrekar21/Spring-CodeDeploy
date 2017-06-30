@@ -13,11 +13,10 @@ services:
      - config-server
     depends_on:
       - config-server
-    entrypoint: ["./wait-for-it.sh","config-server:8888","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","config-server:8888","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8761:8761
 
-  
   customers-service:
     image: leoshreyas/petclinic:customers-service
     container_name: customers-service
@@ -28,7 +27,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
-    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
     - 8081:8081
 
@@ -42,7 +41,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
-    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8082:8082
 
@@ -56,13 +55,13 @@ services:
     depends_on:
      - config-server
      - discovery-server
-    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8083:8083
 
   api-gateway:
-    image:leoshreyas/petclinic:api-gateway
-    container_name:api-gateway
+    image: leoshreyas/petclinic:api-gateway
+    container_name: api-gateway
     links:
      - config-server
      - discovery-server
@@ -73,7 +72,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
-    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 8080:8080
 
@@ -86,7 +85,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
-    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 9411:9411
 
@@ -99,6 +98,6 @@ services:
     depends_on:
      - config-server
      - discovery-server
-    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=120","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
      - 9090:9090
