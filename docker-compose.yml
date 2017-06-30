@@ -62,7 +62,7 @@ services:
 
   api-gateway:
     image:leoshreyas/petclinic:api-gateway
-    container_name: api-gateway
+    container_name:api-gateway
     links:
      - config-server
      - discovery-server
