@@ -6,23 +6,23 @@
 #aws elb deregister-instances-from-load-balancer --load-balancer-name LB-QA-PetClinic --instances $(curl http://169.254.169.254/latest/meta-data/instance-id)
 
 # Stop running containers
-docker kill $(docker ps -aq)
+#docker kill $(docker ps -aq)
 
 # Remove all containers
-docker rm -f $(docker ps -aq)
+#docker rm -f $(docker ps -aq)
 
 # Remove all images
-docker rmi -f  $(docker images -aq)
+#docker rmi -f  $(docker images -aq)
 
 #Load images copied over from CodeDeploy
-docker load tracing-server
-docker load admin-server
-docker load customers-service
-docker load vets-service
-docker load visits-service
-docker load config-server
-docker load discovery-server
-docker load api-gateway
+docker load tracing-server.tar
+docker load admin-server.tar
+docker load customers-service.tar
+docker load vets-service.tar
+docker load visits-service.tar
+docker load config-server.tar
+docker load discovery-server.tar
+docker load api-gateway.tar
 
 # Start everything
 docker-compose up
