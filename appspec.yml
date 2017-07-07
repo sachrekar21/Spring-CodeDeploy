@@ -5,5 +5,5 @@ files:
     destination: /
 hooks:
   AfterInstall:
-    - location: /scripts/PetClinic_AfterInstall.sh
+    - location: PetClinic_AfterInstall.sh
       timeout: 180
