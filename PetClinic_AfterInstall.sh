@@ -15,14 +15,14 @@
 #docker rmi -f  $(docker images -aq)
 
 #Load images copied over from CodeDeploy
-docker load tracing-server.tar
-docker load admin-server.tar
-docker load customers-service.tar
-docker load vets-service.tar
-docker load visits-service.tar
-docker load config-server.tar
-docker load discovery-server.tar
-docker load api-gateway.tar
+docker load --input tracing-server.tar
+docker load --input admin-server.tar
+docker load --input customers-service.tar
+docker load --input vets-service.tar
+docker load --input visits-service.tar
+docker load --input config-server.tar
+docker load --input discovery-server.tar
+docker load --input api-gateway.tar
 
 # Start everything
 docker-compose up
