@@ -13,6 +13,7 @@ if [ "$(docker images -aq)" ]; then
 fi
 
 #Load images copied over from CodeDeploy
+cd PetClinic/images
 docker load --input tracing-server.tar
 docker load --input admin-server.tar
 docker load --input customers-service.tar
