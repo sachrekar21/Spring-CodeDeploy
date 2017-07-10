@@ -24,4 +24,4 @@ docker load --input discovery-server.tar
 docker load --input api-gateway.tar
 
 # Start everything
-/usr/local/bin/docker-compose up
+/usr/local/bin/docker-compose up -d
