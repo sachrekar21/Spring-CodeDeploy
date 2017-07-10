@@ -7,7 +7,7 @@
 
 echo printing results of pwd
 echo $(pwd)
-cd /images
+cd /PetClinic/images
 echo printing results of pwd
 echo $(pwd)
 
