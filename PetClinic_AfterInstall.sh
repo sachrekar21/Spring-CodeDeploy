@@ -15,6 +15,7 @@
 #docker rmi -f  $(docker images -aq)
 
 #Load images copied over from CodeDeploy
+cd images
 docker load --input tracing-server
 docker load --input admin-server
 docker load --input customers-service
