@@ -5,6 +5,9 @@
 #De-register this instance with load balancer
 #aws elb deregister-instances-from-load-balancer --load-balancer-name LB-QA-PetClinic --instances $(curl http://169.254.169.254/latest/meta-data/instance-id)
 
+echo printing results of pwd
+echo $(pwd)
+
 # Stop running containers
 #docker kill $(docker ps -aq)
 
