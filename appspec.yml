@@ -5,5 +5,5 @@ files:
     destination: /opt/codedeploy-agent/PetClinic
 hooks:
   AfterInstall:
-    - location: /opt/codedeploy-agent/PetCinic/PetClinic_AfterInstall.sh
+    - location: PetClinic_AfterInstall.sh
       timeout: 180
