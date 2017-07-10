@@ -7,9 +7,9 @@
 
 echo printing results of pwd
 echo $(pwd)
-cd PetClinic/images
-echo printing results of pwd
-echo $(pwd)
+#cd PetClinic/images
+#echo printing results of pwd
+#echo $(pwd)
 
 # Stop running containers and then remove them
 if [ "$(docker ps -aq)" ]; then
