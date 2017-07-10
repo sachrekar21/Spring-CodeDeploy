@@ -1,9 +1,9 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /opt/codedeploy-agent/PetClinic
+  - source: /images
+    destination: /opt/codedeploy-agent/PetClinic/images
 hooks:
   AfterInstall:
     - location: PetClinic_AfterInstall.sh
-      timeout: 180
+      timeout: 3600
