@@ -8,17 +8,19 @@
 echo printing results of pwd
 echo $(pwd)
 
-# Stop running containers
-#docker kill $(docker ps -aq)
-
-# Remove all containers
-#docker rm -f $(docker ps -aq)
+# Stop running containers and then remove them
+if [ "$(docker ps -aq)" ]; then
+    docker kill $(docker ps -aq)
+    docker rm -f $(docker ps -aq)
+fi
 
 # Remove all images
-#docker rmi -f  $(docker images -aq)
+if [ "$(docker images -aq)" ]; then
+    docker rmi -f $(docker images -aq)
+fi
 
 #Load images copied over from CodeDeploy
-cd images
+cd ~/PetClinic/images
 docker load --input tracing-server
 docker load --input admin-server
 docker load --input customers-service
