@@ -3,9 +3,7 @@ os: linux
 files:
   - source: /
     destination: /root/PetClinic
-  - source: PetClinic_AfterInstall.sh
-    destination: PetClinic_AfterInstall.sh
 hooks:
   AfterInstall:
-    - location: /root/PetClinic/PetClinic_AfterInstall.sh
+    - location: PetClinic_AfterInstall.sh
       timeout: 180
