@@ -23,7 +23,7 @@ if [ "$(docker images -aq)" ]; then
 fi
 
 #Load images copied over from CodeDeploy
-docker load --input tracing-server
+docker load --input tracing-server.tar
 docker load --input admin-server
 docker load --input customers-service
 docker load --input vets-service
