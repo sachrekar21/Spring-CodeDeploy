@@ -7,6 +7,9 @@
 
 echo printing results of pwd
 echo $(pwd)
+cd ~/PetClinic/images
+echo printing results of pwd
+echo $(pwd)
 
 # Stop running containers and then remove them
 if [ "$(docker ps -aq)" ]; then
@@ -20,7 +23,6 @@ if [ "$(docker images -aq)" ]; then
 fi
 
 #Load images copied over from CodeDeploy
-cd ~/PetClinic/images
 docker load --input tracing-server
 docker load --input admin-server
 docker load --input customers-service
