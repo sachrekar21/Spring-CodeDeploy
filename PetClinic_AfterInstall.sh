@@ -7,7 +7,7 @@
 
 echo printing results of pwd
 echo $(pwd)
-cd /root/images
+cd /images
 echo printing results of pwd
 echo $(pwd)
 
