@@ -1,10 +1,10 @@
 version: 0.0
 os: linux
 files:
-    - source: PetClinic_AfterInstall.sh
-    destination: PetClinic_AfterInstall.sh
-    - source: /
+  - source: /
     destination: /root/PetClinic
+  - source: PetClinic_AfterInstall.sh
+    destination: PetClinic_AfterInstall.sh
 hooks:
   AfterInstall:
     - location: /root/PetClinic/PetClinic_AfterInstall.sh
