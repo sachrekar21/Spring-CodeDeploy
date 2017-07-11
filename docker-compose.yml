@@ -74,7 +74,7 @@ services:
      - discovery-server
     entrypoint: ["./wait-for-it.sh","discovery-server:8761","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
-     - 8080:8080
+     - 8084:8084
 
   tracing-server:
     image: leoshreyas/petclinic:tracing-server
